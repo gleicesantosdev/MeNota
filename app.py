@@ -6,8 +6,8 @@ import subprocess
 
 load_dotenv()
 
-template_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../front/templates')
-static_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), '../front/static')
+template_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'templates')
+static_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static')
 
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
@@ -24,9 +24,9 @@ try:
 except Exception as e:
     print(f"Erro ao conectar ao MongoDB: {e}")
 
-@app.route('/')
+@app.route("/")
 def home():
-    return render_template('telaCarregamento.html')
+    return render_template("telaCarregamento.html")
 
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
@@ -102,16 +102,16 @@ def validar_nota():
 
         # Salva o arquivo
         file_path = os.path.join(UPLOAD_FOLDER, file.filename)
-        print(f"Salvando arquivo em: {file_path}")  # Adicione este print
+        print(f"Salvando arquivo em: {file_path}")  
         file.save(file_path)
 
         # Chama o extrai.py com o caminho do arquivo
-        result = subprocess.run(['python', 'back/extrai.py', file_path], capture_output=True, text=True)
+        result = subprocess.run(['python', 'extrai.py', file_path], capture_output=True, text=True)
         print(f"Resultado da execução do script: {result.returncode}, Saída: {result.stdout}, Erro: {result.stderr}")
 
         # Verifica se o processamento foi bem-sucedido
         if result.returncode == 0:
-            # Aqui você pode adicionar lógica para atualizar a pontuação no banco de dados, se necessário
+           
             return redirect(url_for('pontuacao'))  # Redireciona para pontuacao.html
         else:
             print(f"Erro ao processar o arquivo: {result.stderr}")  # Log do erro
@@ -144,5 +144,5 @@ def pontuacao():
 def serve_static(filename):
     return send_from_directory(static_dir, filename)
 
-if __name__ == '__main__':
+if __name__ == '_main_':
     app.run(debug=True)

@@ -147,7 +147,7 @@ def main(image_path):
     else:
          print(f"A imagem processada '{processed_image_path}' não foi encontrada para exclusão.")
 
-if __name__ == "__main__":
+if __name__ == "_main_":
     import sys
     if len(sys.argv) != 2:
         print("Uso: python extrai.py <caminho_da_imagem>")
