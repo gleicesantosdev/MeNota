@@ -6,7 +6,7 @@ import subprocess
 
 load_dotenv()
 
-template_dir = os.path.join(os.path.abspath(os.path.dirname(_file__)), 'templates')
+template_dir = os.path.join(os.path.abspath(os.path.dirname(_f_ile___)), 'templates')
 static_dir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static')
 
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
